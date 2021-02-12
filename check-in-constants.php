@@ -1,6 +1,6 @@
 <?php
-
-define("USERTABLE", "ck_checkin_user");
-define("FORMTABLE", "ck_checkin_form");
+global $wpdb;
+define("USERTABLE", $wpdb->prefix . "ck_checkin_user");
+define("FORMTABLE", $wpdb->prefix . "ck_checkin_form");
 
 ?>

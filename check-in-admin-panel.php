@@ -16,6 +16,7 @@ function create_admin_panel(){
 
    <?php
 
+    /* is called on create-form */
     if (isset($_POST["ck_submit"])) {
         insert_data_database_form($_POST["ck_date"],$_POST["ck_time1"],$_POST["ck_time2"],$_POST["ck_max"]);
     }
@@ -26,13 +27,15 @@ function create_admin_panel(){
         <div style='width:20%'>ShortCode</div>
         <div style='width:10%'>Created at</div>
         <div style='width:10%'>Event Time</div>
-        <div style='width:20%'>Time #1</div>
+        <div style='width:10%'>Time #1</div>
         <div style='width:10%'>Time #2</div>
         <div style='width:10%'>Max People</div>
     </div>
     
     <?php
 
+
+    /* render all forms in admin panel */
     $results = get_all_forms();
     for ($i = count($results)-1; $i >= 0 ; $i--) {
         $_id = $results[$i]->id; ?>
@@ -41,11 +44,12 @@ function create_admin_panel(){
             <div style='width:20%'> [ck_check_in ck_id='<?php echo($_id); ?>']</div>
             <div style='width:10%'> <?php echo($results[$i]->ck_reg_time); ?> </div>
             <div style='width:10%'> <?php echo($results[$i]->ck_date); ?> </div>
-            <div style='width:20%'> <?php echo($results[$i]->ck_time1); ?> </div>
+            <div style='width:10%'> <?php echo($results[$i]->ck_time1); ?> </div>
             <div style='width:10%'> <?php echo($results[$i]->ck_time2 ); ?></div>
             <div style='width:10%'> <?php echo($results[$i]->ck_max); ?>  </div>
-            <input type='hidden' name='deleteId' value= <?php echo($_id); ?>/>
-            <button type='submit' class='submitdelete button delete' name='ck_delete'>Delete</button>
+            <input type='hidden' name='formId' value= <?php echo($_id); ?>/>
+            <button style='width:10%' type='submit' class='submitdelete button' name='ck_delete'>Delete</button>
+            <button style='width:10%' type='submit' class='submitdelete button' name='ck_getdata'>Get  Data</button>
         </form>
         
     <?php
